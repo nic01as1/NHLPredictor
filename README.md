@@ -77,4 +77,4 @@ The model predicts the outcome of the game using the trained Random Forest model
 ---
 
 ### **Acknowledgments**
-Shout out to ChatGPT for assisting with model development and code implementation!
+Shout out to ChatGPT and some indians guys on youtubefor assisting with model development and code implementation!
