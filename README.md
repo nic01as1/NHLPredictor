@@ -41,7 +41,7 @@ The primary evaluation metric is the **F1 Score**, which balances precision and 
    - **Home Team is Stronger (Ranking Comparison)**: F1 = **0.5226**.
 
 2. **Encoding Teams**:
-   - Teams were one-hot encoded (32 teams) and combined with other features.
+   - Teams were one-hot encoded (32 teams).
    - **Decision Tree Model**: F1 = **0.5654**.
    - **Random Forest Model**: F1 = **0.5823**.
 
