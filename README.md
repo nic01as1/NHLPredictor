@@ -78,3 +78,10 @@ The model predicts the outcome of the game using the trained Random Forest model
 
 ### **Acknowledgments**
 Shout out to ChatGPT and some indians guys on youtubefor assisting with model development and code implementation!
+
+
+
+
+
+V2 Changes
+Changed the binary variable (Higher rank) for the difference in ranks between the 2 teams (Increased the F1 by 0.0
