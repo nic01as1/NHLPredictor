@@ -1,16 +1,65 @@
-# NHLPredictor
-Predicting NHL Game Outcome
+NHLPredictor
+Predicting NHL Game Outcomes
+The goal of this project is to develop a model that predicts NHL game outcomes with an edge over traditional betting sites, which often rely on human sentiment and can be biased.
 
-The Goal of this project is to predict NHL game outcome and having a project that has an edge over betting sites which Highly depends on human sentiment which is highly biased. 
+Future Improvements
+There are several areas for optimization in this project:
 
-There is alot of optimisation to be made to the project like : Adjusting the model for taking the odds in consideration , Adjusting the weight of each value / adding / removing values, Adding an automatic scraper , Adding a friendlier interface.
+Incorporating betting odds into the model.
+Adjusting the weighting of features or adding/removing values.
+Automating data scraping from sports websites.
+Creating a user-friendly interface.
+Project Overview
+Data Source:
 
-Project : The Project starts by extracting datas from an excel file which is an extraction from a site with all the historic games from the season 24-25. I then add some datas in excel (Which could be done in python i nthe futur)
-From there,  find the winrate of all the NHL teams at home. This winrrate is higher than away which is normal for few factors like : Travel, Crowd and Familarity
-In our case the wirrate at home is : 53.6% 
+The project starts with data extracted from an Excel file containing historic NHL games from the 2024-2025 season.
+Additional data manipulation is currently performed in Excel but could be automated in Python in the future.
+Home Advantage:
 
-I will try to beat this with out model and I will run it for the full year making obvious adjustement during the year. (Even tho it's not the best for testing) 
+Home teams historically have a higher win rate due to factors like travel, crowd support, and familiarity with the venue.
+In this dataset, the overall home win rate is 53.6%.
+Objective:
 
-After that , I find the F1 which will be a usefull mesure to see the quality of my model. I'll try to tweak it to be the highest possible without adding biais like overfitting. 
+Beat the baseline home win rate using machine learning models.
+Track model performance throughout the season and make incremental improvements.
+Model Evaluation
+The primary evaluation metric is the F1 Score, which balances precision and recall to measure model quality.
 
-Assuming the home team will always win, my F1 is 0.37.
+Baseline F1 Score (assuming the home team always wins): 0.37.
+Model Development
+Feature Engineering:
+
+Home/Visitor Win Rate Over Last 10 Games: F1 = 0.51.
+Season Win Rate for Home and Away Teams: F1 = 0.5096.
+Home Team is Stronger (Ranking Comparison): F1 = 0.5226.
+Encoding Teams:
+
+Teams were one-hot encoded (32 teams) and combined with other features.
+Decision Tree Model: F1 = 0.5654.
+Random Forest Model: F1 = 0.5823.
+Model Optimization:
+
+Merging team encodings with additional features improved performance:
+Decision Tree Model: F1 = 0.5032.
+Random Forest Model (Optimized): F1 = 0.6381.
+Final Model:
+
+The optimized Random Forest model achieves an F1 score of 0.6381, indicating "decent" performance in predicting game outcomes.
+Results
+Improvement in F1:
+Baseline F1 Score ≈ 0.37.
+Final Model F1 Score = 0.63.
+Absolute Improvement: 26%.
+Relative Improvement in Accuracy:
+Assuming accuracy aligns closely with F1, the model likely predicts ~63% of games correctly, compared to the 53.6% baseline.
+Approximate Accuracy Improvement: 9.4%.
+Prediction Workflow
+The final code takes two inputs:
+
+Home team.
+Away team.
+The model predicts the outcome of the game using the trained Random Forest model.
+
+Acknowledgments
+Shout out to ChatGPT and some indians dudes on the internet for assisting with model development and code implementation!
+
