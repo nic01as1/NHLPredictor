@@ -1,18 +1,8 @@
+
 # **NHLPredictor**
 ## **Predicting NHL Game Outcomes**
 
 The goal of this project is to develop a model that predicts NHL game outcomes with an edge over traditional betting sites, which often rely on human sentiment and can be biased.
-
----
-
-### **Future Improvements**
-- Incorporate betting odds into the model.
-- Adjust the weighting of features or add/remove values.
-- Automate data scraping from sports websites.
-- Create a user-friendly interface.
-
----
-
 ### **Project Overview**
 1. **Data Source**:
    - The project starts with data extracted from an Excel file containing historic NHL games from the 2024-2025 season.
@@ -24,13 +14,34 @@ The goal of this project is to develop a model that predicts NHL game outcomes w
 
 3. **Objective**:
    - Beat the baseline home win rate using machine learning models.
+   - Make Money using probability arbitrages
    - Track model performance throughout the season and make incremental improvements.
-
----
-
+     
 ### **Model Evaluation**
 The primary evaluation metric is the **F1 Score**, which balances precision and recall to measure model quality.
 - **Baseline F1 Score** (assuming the home team always wins): **0.37**.
+
+  
+# *V2*
+## **Improvement from V1**
+- Incorporated Kelly Criterion for betting size
+- Adjusted the model data selection (Premutation and Data Importance)
+- Added Scraping for datas inputs (Selenium and beautifulsoup)
+- Adjusted the model Optimisation process (Made it simpler)
+- Added explicative variables
+- Simpler to use for the inputs
+
+
+
+---
+# **V1**
+### **Future Improvements**
+- Incorporate betting odds into the model.
+- Adjust the weighting of features or add/remove values.
+- Automate data scraping from sports websites.
+- Create a user-friendly interface.
+
+
 
 ---
 
