@@ -14,7 +14,7 @@ The goal of this project is to develop a model that predicts NHL game outcomes w
 
 3. **Objective**:
    - Beat the baseline home win rate using machine learning models.
-   - Make Money using probability arbitrages
+   - Make Money using probability arbitrages.
    - Track model performance throughout the season and make incremental improvements.
      
 ### **Model Evaluation**
