@@ -29,8 +29,13 @@ The primary evaluation metric is the **F1 Score**, which balances precision and 
 - Added **scraping for data inputs** (Selenium and BeautifulSoup)  
 - Simplified the **model optimization process**  
 - Added **explicative variables**  
-- **Easier input process** for user interaction  
-
+- **Easier input process** for user interaction
+  
+## **Future Improvements**
+- **Neural Network & Logistic Regression Models** for enhanced prediction accuracy.  
+- **Automated Scraping of Odds & Games from Betway** for real-time data updates.  
+- **Live Model Updates & Performance Tracking** with automated retraining and accuracy monitoring.
+  
 ---
 
 ## **Data Scraping Sources**
@@ -50,9 +55,9 @@ The primary evaluation metric is the **F1 Score**, which balances precision and 
 ## **Feature Engineering**
 - **Last 10 Wins:** Tracks team performance in recent matches  
 - **Played Yesterday:** Identifies back-to-back games  
-- **Win Rate:** Computes historical win percentage for home & away teams  
+- **Win Rate(At Home or Away):** Computes historical win percentage for home & away teams  
 - **Overall Win Streak:** Tracks consecutive wins/losses  
-- **Opponent Strength:** Measures the average ranking of past opponents  
+- **Opponent Strength:** Measures the average ranking of past opponents in the last 10 days
 - **Rest Days:** Determines time since last game  
 
 ---
@@ -63,7 +68,7 @@ The primary evaluation metric is the **F1 Score**, which balances precision and 
 - Identified top features via **model-based & permutation importance**  
 - Ranked models by **F1-score** and saved results for comparison  
 
-📌 **Base Numerical Features F1 Score:** `0.4925`  
+ **Base Numerical Features F1 Score:** `0.4925`  
 
 ---
 
@@ -75,12 +80,12 @@ The primary evaluation metric is the **F1 Score**, which balances precision and 
 ---
 
 ## **Optimizing Random Forest for Final Model with All Data**
-📌 **Final Model F1 Score:** `0.5868`  
+ **Final Model F1 Score:** `0.5868`  
 
 ---
 
 ## **Match Prediction & Betting Strategy**
-- **Team Selection & Encoding:** User selects home & away teams (numerical + one-hot encoding)  
+- **Team Selection & Encoding:** User selects home & away teams
 - **Feature Extraction:** Retrieves and averages historical team stats  
 - **Model Prediction:** Constructs input vector & predicts **win probabilities**  
 - **Kelly Criterion Betting Strategy:** User inputs odds, and the model **calculates optimal bet size**  
