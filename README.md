@@ -6,7 +6,7 @@ The goal of this project is to develop a model that predicts NHL game outcomes w
 ### **Project Overview**
 1. **Data Source**:
    - Ranking of teams : https://www.hockey-reference.com/leagues/NHL_2025.html#all_stats
-   - Games of the season infos : https://fixturedownload.com/results/nhl-202
+   - Games of the season infos : https://fixturedownload.com/results/nhl-2024
 
 2. **Home Advantage**:
    - Home teams historically have a higher win rate due to factors like travel, crowd support, and familiarity with the venue.
