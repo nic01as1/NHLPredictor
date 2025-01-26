@@ -36,7 +36,7 @@ The primary evaluation metric is the **F1 Score**, which balances precision and 
 ## **Data Scraping Sources**
 ### **Extracted Data:**
 - **Ranking of teams:** [Hockey-Reference](https://www.hockey-reference.com/leagues/NHL_2025.html#all_stats) *(via Selenium)*  
-- **Season game results:** [Fixture Download](https://fixturedownload.com/results/nhl-202) *(via BeautifulSoup)*  
+- **Season game results:** [Fixture Download](https://fixturedownload.com/results/nhl-2024) *(via BeautifulSoup)*  
 
 ---
 
