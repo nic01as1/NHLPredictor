@@ -20,6 +20,71 @@ The goal of this project is to develop a model that predicts NHL game outcomes w
 ### **Model Evaluation**
 The primary evaluation metric is the **F1 Score**, which balances precision and recall to measure model quality.
 - **Baseline F1 Score** (assuming the home team always wins): **0.3891**.
+  
+# **V3**
+
+## **Improvements from V2**
+- Moved to a **two–model core**: **Logistic Regression** and **MLP** (neural network).
+- Adopted **time-aware cross-validation (`TimeSeriesSplit`)** and **refit on Brier score** to directly optimize probability quality for betting.
+- Added **per-model feature selection inside pipelines** (no manual slicing):
+  - Logistic: **RFECV** (name-preserving) → `StandardScaler` → `LogisticRegression`
+  - MLP: **SelectKBest(mutual_info)** → `StandardScaler` → `MLPClassifier(early_stopping=True)`
+- Tested **probability calibration** (sigmoid & isotonic) and **kept only if Brier improved**.
+- Implemented a **simple ensemble** of Logistic + MLP (default **50/50** averaging); optional weight tuning if it consistently lowers Brier.
+- Added **team-name normalization** for Betway scraping (aliases + light fuzzy match) to prevent “unknown team” skips.
+
+
+## **Training Protocol**
+- **Split**: chronological (first 80% train, last 20% holdout).
+- **CV**: `TimeSeriesSplit` (5–6 folds), no shuffling.
+- **Scoring (multi-metric)**:
+  - Primary: **Brier** (↓ better)
+  - Secondary: **ROC AUC** (↑), **F1 (weighted)** (↑)
+- **Refit**: best by `neg_brier_score`.
+
+## **Core Features**
+Computed from history up to (but not including) game date—same logic as V1/V2:
+- **Rank Difference**
+- **Last 10 Wins** (difference)
+- **Home/Away Played Yesterday**
+- **Home Advantage** (win-rate difference)
+- **Win Streak Impact** (streak difference)
+- **Rest Days Since Last Game** (home & away)
+- **Opponent Strength** (difference of recent avg opponent ranks)
+
+> Feature selection is **per-model** inside the pipelines; no manual lists required at inference.
+
+## **Results (Holdout)**
+- **Logistic (L2)** — F1: **0.6306**, ROC AUC: **0.6830**, **Brier: 0.2209**  
+- **MLP** (kept calibration only when helpful) — F1: **0.6386**, ROC AUC: **0.6744**, **Brier: 0.2219**  
+- **Ensemble Avg(Logistic, MLP)** — **Brier: 0.2203**, ROC AUC: **0.6809**, F1: **0.6375**
+
+> Compared to the “always home” baseline Brier (~0.4375), V3 probabilities are **substantially better calibrated** (~0.22).
+
+## **Odds & Betting**
+- **Scraping**: Betway via Selenium + BeautifulSoup (same flow as V2).
+- **Normalization**: Map sportsbook aliases (e.g., “LA Kings” → “Los Angeles Kings”) and fuzzy-match to historical team names.
+- **Bet Sizing**: **Kelly Criterion** on the ensemble probability; bankroll scaling if total exposure exceeds bankroll.
+- **Outputs**: save `predictions.csv` including probabilities, Kelly fractions, and final bet sizes.
+
+## **Artifacts Saved**
+- `model_Logistic_TUNED_HEAVY.joblib`
+- `model_MLP_TUNED_HEAVY.joblib`
+- (Optional) `model_Ensemble_Avg.joblib`
+- `selected_features_tuned.json` (for audit; selectors live inside pipelines)
+
+## **Prediction Workflow (V3)**
+1. **Scrape** upcoming games + odds from Betway.  
+2. **Normalize** team names to match historical data.  
+3. **Build features** (the 9 numeric columns) from latest historical snapshots.  
+4. **Predict** with **both models** and the **50/50 ensemble** (or tuned weight).  
+5. **Compute Kelly** stakes and apply bankroll scaling.  
+6. **Export** results to `predictions.csv`.
+
+## **Future Improvements**
+- Combine **2025 + 2026** seasons with **`sample_weight`** (e.g., weight **2.0** for 2026) and reuse tuned hyper-parameters.
+- Add rolling **calibration plots** and **drift monitoring** (Brier/ROC over time).
+- Explore added context (goalies, injuries) and/or team identity via a **`ColumnTransformer`**, then retrain with the same protocol.
 
 # **V2**
 
@@ -157,11 +222,6 @@ The model predicts the outcome of the game using the trained Random Forest model
 ---
 
 ### **Acknowledgments**
-Shout out to ChatGPT and some indians guys on youtubefor assisting with model development and code implementation!
+Shout out to ChatGPT and all the indians guys on youtube for assisting with model development and code implementation!
 
 
-
-
-
-V2 Changes
-Changed the binary variable (Higher rank) for the difference in ranks between the 2 teams (Increased the F1 by 0.0061)
