@@ -1,0 +1,17 @@
+﻿# OS / divers
+.DS_Store
+Thumbs.db
+*.lnk
+*.url
+*.tmp
+
+# Notebooks / IDE
+.ipynb_checkpoints/
+.vscode/
+__pycache__/
+*.pyc
+
+# Modèles lourds (décommente si tu veux les ignorer)
+*.joblib
+*.pkl
+*.h5

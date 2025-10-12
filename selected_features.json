@@ -1,0 +1,30 @@
+{
+  "rename_map": {
+    "Opponent Strength": "Opponent_Strength",
+    "Rank Difference": "Rank_Difference",
+    "Last 10 Wins": "Last_10_Wins",
+    "Home Played Yesterday": "Home_Played_Yesterday",
+    "Away Played Yesterday": "Away_Played_Yesterday",
+    "Home Advantage": "Home_Advantage",
+    "Win Streak Impact": "Win_Streak_Impact",
+    "Away Rest Days Since Last Game": "Away_Rest_Days_Since_Last_Game",
+    "Home Rest Days Since Last Game": "Home_Rest_Days_Since_Last_Game"
+  },
+  "selected_features": {
+    "Logistic": [
+      "Rank_Difference",
+      "Last_10_Wins",
+      "Home_Played_Yesterday",
+      "Away_Played_Yesterday",
+      "Home_Advantage",
+      "Away_Rest_Days_Since_Last_Game",
+      "Home_Rest_Days_Since_Last_Game"
+    ],
+    "MLP": [
+      "Rank_Difference",
+      "Away_Played_Yesterday",
+      "Away_Rest_Days_Since_Last_Game",
+      "Home_Rest_Days_Since_Last_Game"
+    ]
+  }
+}
